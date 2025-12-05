@@ -159,37 +159,3 @@ output "ssh_command" {
   description = "SSH command to connect"
   value       = "ssh -i /path/to/your-key.pem ubuntu@${aws_eip.kolla_eip.public_ip}"
 }
-
-###################################################################################################
-# After the instance is running, you can use the following commands to set up Kolla-Ansible
-###################################################################################################
-# echo "Updating packages"
-# sudo apt-get update && apt-get upgrade -y
-# sudo apt install -y git python3-dev libffi-dev gcc libssl-dev libdbus-glib-1-dev python3-venv
-# python3 -m venv pyenv
-# source pyenv/bin/activate
-# cd pyenv/
-# pip install -U pip
-# pip install git+https://opendev.org/openstack/kolla-ansible@master
-# sudo mkdir -p /etc/kolla
-# echo "User : $USER"
-# sudo chown $USER:$USER /etc/kolla
-# ll /etc/kolla
-# which kolla-ansible
-# sudo cp share/kolla-ansible/etc_examples/kolla/* /etc/kolla/.
-# ll /etc/kolla/
-# sudo cp share/kolla-ansible/ansible/inventory/all-in-one ../.
-# kolla-ansible install-deps --become
-
-# kolla-genpwd
-# cat "/etc/kolla/passwords.yml"
-# clear
-# grep -v "^#" /etc/kolla/globals.yml | grep -v "^$"
-# pip install docker
-# pip install dbus-python
-
-# kolla-ansible bootstrap-servers -i ./all-in-one --become
-# kolla-ansible prechecks -i ./all-in-one --become
-# kolla-ansible deploy -i ./all-in-one --become
-# pip install python-openstackclient -c https://releases.openstack.org/constraints/upper/master
-# kolla-ansible post-deploy --become -i ./all-in-one
